@@ -1,44 +1,34 @@
-// Define an employee object with name and streetAddress properties
 const employee = {
-    name: "Max",
-    streetAddress: "5 Main Street",
-  };
-  
-  // Function to update an employee object with a new key-value pair
-  function updateEmployeeWithKeyAndValue(employee, key, value) {
+  name: "Max",
+  streetAddress: "5 Main Street",
+};
 
-    // return { ...employee, ...{ [key]: value } }
-  
-    // Create a new object by copying the properties of the original employee object
-    // and adding or updating the specified key-value pair
-    return Object.assign({}, employee, { [key]: value });
-  }
-  
-  // Function to destructively update an employee object with a new key-value pair
-  function destructivelyUpdateEmployeeWithKeyAndValue(employee, key, value) {
-    // Update the original employee object directly with the specified key-value pair
-    employee[key] = value;
-  
-    return employee;
-  }
-  
-  // Function to delete a key from an employee object and return a new object
-  function deleteFromEmployeeByKey(employee, key) {
+// Creates a new object with the updated key-value pair without mutating the original employee object.
+function updateEmployeeWithKeyAndValue(employee, key, value) {
+  return Object.assign({}, employee, { [key]: value });
+  // Alternate using ES6 Spread operators:
+  // return { ...employee, ...{ [key]: value } }
+}
 
-    // const newObj = { ...employee }
-  
-    // Create a copy of the original employee object
-    const newObj = Object.assign({}, employee);
-  
-    // Delete the specified key from the copy of the employee object
-    delete newObj[key];
-  
-    return newObj;
-  }
+// Updates the original employee object with the provided key-value pair.
+function destructivelyUpdateEmployeeWithKeyAndValue(employee, key, value) {
+  employee[key] = value;
+  return employee;
+}
 
-  function destructivelyDeleteFromEmployeeByKey(employee, key) {
-    // Delete the specified key from the original employee object directly
-    delete employee[key];
-  
-    return employee;
-  }
+// Creates a new object by removing the specified key from the employee object without mutating the original object.
+function deleteFromEmployeeByKey(employee, key) {
+  const newObj = Object.assign({}, employee);
+  delete newObj[key];
+  return newObj;
+  // Alternate using ES6 Spread operators:
+  // const newObj = { ...employee }
+  // delete newObj[key];
+  // return newObj;
+}
+
+// Removes the specified key from the employee object directly, mutating the original object.
+function destructivelyDeleteFromEmployeeByKey(employee, key) {
+  delete employee[key];
+  return employee;
+}
